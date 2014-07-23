@@ -1,0 +1,17 @@
+
+{% block content %}
+    <div class="movieInfo">
+        <h1>Favorite Movies Test</h1>
+        <img src="{{ item }}" />
+        <p>
+            Title: {{ title }}
+        </p>
+        <p>
+            Released In: {{ release_year }}
+        </p>
+        <p>
+            Critic Rating: {{ critic_rating }}
+        </p>
+    <hr>
+    </div>
+{% endblock %}

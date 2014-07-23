@@ -1,0 +1,21 @@
+{% block content %}
+    <div class="favoriteMovies">
+        <h1>Favorite Movies</h1>
+        {% for movie in favorite %}
+
+        <img src="{{ movie.poster }}" />
+        <p>
+            Title: {{ movie.title }}
+        </p>
+        <p>
+            Released In: {{ movie.release_year }}
+        </p>
+        <p>
+            Critic Rating: {{ movie.critic_rating }}
+        </p>
+        <button class="removeFavorite" data-title="{{ movie.title }}">Remove From Favorites</button>
+    <hr>
+    </div>
+    {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,95 @@
+body {
+    text-align: center;
+    font-family: avenir, helvetica, sans-serif;
+    background: #bfc4ee;
+}
+
+.product {
+	height: 120px;
+	width: 100px;
+	border: 3px solid red;
+    margin: auto;
+    padding: 2rem;
+}
+
+.product button {
+    display: block;
+    margin: auto;
+}
+
+.moreInfo {
+	display: none;
+}
+
+#cart {
+	height: 100%;
+	width: 1400px;
+    margin: auto;
+    /*background: black;*/
+}
+
+.pokeTeam {
+    height: 275px;
+    width: 275px;
+    display: inline-block;
+    border: 1px solid grey;
+    padding: 0 1rem;
+    margin: 1rem;
+    background: rgba(255, 255, 255, 0.71);
+    border-radius: 100%;
+}
+
+.pokeTeam:hover {
+    -webkit-transition: .5s ease;
+    box-shadow: 0 0 10px;
+    background: rgba(167, 163, 157, 0.60);
+    /*background: rgba(255, 255, 255, 1);*/
+    /*border: 5px solid black;*/
+}
+
+.pokeName {
+    text-transform: capitalize;
+}
+
+.pokeImage {
+    height: 150px;
+    width: 150px;
+}
+
+.pokeMatch {
+    margin: 4rem;
+    height: 2rem;
+    width: 10%;
+    border-radius: 5px;
+    border: 3px solid red;
+    background: rgba(132, 117, 187, #a43926);
+    font-size: 1.2rem;
+    color: red;
+}
+
+.pokeMatch:hover {
+    background: white;
+}
+
+.inactive {
+    visibility: hidden;
+}
+
+.matched {
+    font-weight: 200;
+}
+
+
+/* ROTTEN TOMATOES STUFF */
+
+.movieItem {
+    margin: 1.5rem;
+    display: inline-block;
+}
+
+.movieInfoContainer {
+    display: inline-block;
+    width: 70%;
+    border: solid white 2px;
+    margin-top: 3rem;
+}

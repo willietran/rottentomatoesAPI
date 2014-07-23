@@ -1,0 +1,54 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="{% static "js/tomatoes.js" %}"></script>
+    <link rel="stylesheet" href="{% static "css/index.css" %}" type="text/css">
+    <title></title>
+</head>
+<body>
+<h1>Rotten Tomatoes</h1>
+<form id="formField">
+    <input id="searchField" placeholder="Movie Name">
+    <input id="numResults" placeholder="Number of Results">
+</form>
+<button id="getMovie">
+    Get a movie
+</button>
+{#<button id="saveMovie">#}
+{#    Save this movie#}
+{#</button>#}
+
+<button id="viewFavorites">
+    View Favorite Movies
+</button>
+
+<div class="favoriteMovies">
+    {% for movie in favorite %}
+
+    <img src="{{ movie.poster }}" />
+    <p>
+        Title: {{ movie.title }}
+    </p>
+    <p>
+        Released In: {{ movie.release_year }}
+    </p>
+    <p>
+        Critic Rating: {{ movie.critic_rating }}
+    </p>
+<hr>
+</div>
+{% endfor %}
+
+<div class="searchResults"></div>
+<div class="movieInfoContainer"></div>
+
+{% block content %}
+
+{% endblock %}
+
+</body>
+</html>
