@@ -3,7 +3,7 @@ from django.core import serializers
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-from tomatoes.models import Movie
+from tomatoes.models import Movie, Favorite
 
 # Create your views here.
 
@@ -87,19 +87,19 @@ def movie_tinder(request):
     return render(request, "tinder.html")
 
 
+@csrf_exempt
 def new_favorite(request):
     if request.method == 'POST':
         data = json.loads(request.body)
-        new_favorite = Favorite.objects.create(
+        favorites = Favorite.objects.create(
             title=data['title'],
-            poster=data['posters'],
-            identifier=data['id'],
+            poster=data['poster'],
+            identifier=data['identifier'],
         )
 
         movie_info = {
-            'title': new_favorite.title,
-            'poster': new_favorite.posters,
-            'identifier': new_favorite.identifier
+            'title': favorites.title,
+            'poster': favorites.poster,
+            'identifier': favorites.identifier
         }
-        response = serializers.serialize('json', [movie_info])
-        return render(request, "new_favorite.html", response)
+        return render(request, "movie_template.html", movie_info)

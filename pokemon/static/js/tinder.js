@@ -7,7 +7,7 @@ $(document).ready(function() {
     var myApiKey = 't9evbc8v4u7vgc7cu6rbxbey';
     var movieID;
 
-
+    movie_list = [];
     $('#submitBtn').on('click', function() {
         var query = $('#search').val();
         var pageLimit = 3;
@@ -36,9 +36,15 @@ $(document).ready(function() {
                     console.log(response);
                     console.log("printing self link...");
                     for (i = 0; i < response.movies.length; i++) {
+                        movie = response.movies[i];
+                        movieInfo = {};
+                        movieInfo.title = movie.title;
+                        movieInfo.poster = movie.posters.original;
+                        movieInfo.identifier = movie.id;
                         var movieLink = response.movies[i].links['self'];
+                        movie_list.push(movieInfo);
                         $('#recommended').append("<div><p>"+ response.movies[i].title +"</p><button id='learnMore' data-id="
-                                                +movieLink+">Learn More</button><button class='favoriteBtn'>favorite</button><div class='synopsis'></div></div>");
+                                                +movieLink+">Learn More</button><button class='favoriteBtn' data-id="+ i +">favorite</button><div class='synopsis'></div></div>");
                         console.log(movieLink);
                     }
                 },
@@ -50,6 +56,24 @@ $(document).ready(function() {
     });
     $(document).on('click', '.favoriteBtn', function() {
         console.log("Favorite Button Pressed");
+        var favID = $(this).data('id');
+        var favMovie = movie_list[favID];
+        var favoriteMovie = JSON.stringify(favMovie);
+        console.log(favoriteMovie);
+        $.ajax({
+            url: '/new_favorite/',
+            type: 'POST',
+            dataType: 'html',
+            data: favoriteMovie,
+            success: function(response) {
+                console.log(response);
+//                $('.movieInfoContainer').html(response);
+            },
+            error: function(response) {
+                console.log("error");
+            }
+        });
+
     });
 
     $(document).on('click', '#learnMore', function() {
